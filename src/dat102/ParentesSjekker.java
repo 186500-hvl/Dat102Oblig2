@@ -21,7 +21,7 @@ public class ParentesSjekker {
    public static boolean erSluttParentes(char c) {
        return c == ')' || c == ']' || c == '}';
    }
-   private static boolean erParentesPar(char start, char slutt) {
+   public static boolean erParentesPar(char start, char slutt) {
        return (start == '(' && slutt == ')') ||
               (start == '[' && slutt == ']') ||
               (start == '{' && slutt == '}');
