@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class ParentesSjekkerTest {
 
-    
+    // 🔹 Tester ALLE typer balanserte parenteser
     @Test
     public void testKorrektParenteser() {
         assertTrue(ParentesSjekker.sjekkParenteser("{ [ ( ) ] }"));
@@ -27,6 +27,11 @@ public class ParentesSjekkerTest {
     }
 
     @Test
+    public void testBlandetMedEkstraTegn() {
+        assertTrue(ParentesSjekker.sjekkParenteser("{a[b(c)d]e}"));
+    }
+
+    @Test
     public void testKodeMedKorrektParenteser() {
         String javaprogram = """
         class HelloWorld {
@@ -38,7 +43,7 @@ public class ParentesSjekkerTest {
         assertTrue(ParentesSjekker.sjekkParenteser(javaprogram));
     }
 
-    
+    // 🔹 Tester feil i ulike parenteser
     @Test
     public void testManglerSluttParentes() {
         assertFalse(ParentesSjekker.sjekkParenteser("{ [ ( ) }"));
@@ -59,13 +64,19 @@ public class ParentesSjekkerTest {
         assertFalse(ParentesSjekker.sjekkParenteser("{ ( ] }"));
     }
 
+    // 🔹 Tester spesifikke scenarier som kan være problematiske
     @Test
-    public void testKunStartParentes() {
+    public void testTomStreng() {
+        assertTrue(ParentesSjekker.sjekkParenteser(""));
+    }
+
+    @Test
+    public void testBareStartParentes() {
         assertFalse(ParentesSjekker.sjekkParenteser("{"));
     }
 
     @Test
-    public void testKunSluttParentes() {
+    public void testBareSluttParentes() {
         assertFalse(ParentesSjekker.sjekkParenteser("}"));
     }
 
@@ -80,11 +91,6 @@ public class ParentesSjekkerTest {
     }
 
     @Test
-    public void testTomStreng() {
-        assertTrue(ParentesSjekker.sjekkParenteser(""));
-    }
-
-    @Test
     public void testBalansertMenFeilRekkefølge() {
         assertFalse(ParentesSjekker.sjekkParenteser(") ("));
     }
@@ -92,5 +98,26 @@ public class ParentesSjekkerTest {
     @Test
     public void testBalansertMenMedUgyldigeTegn() {
         assertFalse(ParentesSjekker.sjekkParenteser("{ a + b ( c } ]"));
+    }
+
+    // 🔹 Tester for å treffe ALLE branches i koden
+    @Test
+    public void testBareTilfeldigeTegnUtenParenteser() {
+        assertTrue(ParentesSjekker.sjekkParenteser("abcdefg12345"));
+    }
+
+    @Test
+    public void testBalansertMenEkstraTegnMellomParentesene() {
+        assertTrue(ParentesSjekker.sjekkParenteser("{ [a (b c) d] e}"));
+    }
+
+    @Test
+    public void testStartParentesMenTomStabel() {
+        assertFalse(ParentesSjekker.sjekkParenteser("{ [ ] ) }"));
+    }
+
+    @Test
+    public void testTomStabelOgForsøkPåPop() {
+        assertFalse(ParentesSjekker.sjekkParenteser(")"));
     }
 }
