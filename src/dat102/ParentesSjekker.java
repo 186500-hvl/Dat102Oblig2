@@ -15,10 +15,10 @@ public class ParentesSjekker {
        }
        return stabel.isEmpty();
    }
-   private static boolean erStartParentes(char c) {
+   public static boolean erStartParentes(char c) {
        return c == '(' || c == '[' || c == '{';
    }
-   private static boolean erSluttParentes(char c) {
+   public static boolean erSluttParentes(char c) {
        return c == ')' || c == ']' || c == '}';
    }
    private static boolean erParentesPar(char start, char slutt) {
