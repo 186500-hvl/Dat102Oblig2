@@ -1,9 +1,8 @@
 package v2;
-
 import java.util.Random;
 import java.util.Arrays;
 
-public class oppgave1 {
+public class Oppgave1 {
     
     public static void insertionSort(int[] a) {
         int n = a.length;
@@ -17,43 +16,17 @@ public class oppgave1 {
         }
         swap(a, 0, minIndex);
 
-        // Sorter resten ved å sette inn to elementer om gangen
-        for (int i = 2; i < n; i += 2) {
-            int min, max;
-            if (a[i - 1] < a[i]) {
-                min = a[i - 1];
-                max = a[i];
-            } else {
-                min = a[i];
-                max = a[i - 1];
-            }
+        // Standard insertion sort, men starter fra indeks 1 (fordi vi har flyttet minste element)
+        for (int i = 1; i < n; i++) {
+            int temp = a[i];
+            int j = i - 1;
 
-            int j = i - 2;
-
-            // Flytt elementer for å sette inn "max"
-            while (j >= 0 && a[j] > max) {
-                a[j + 2] = a[j];
-                j--;
-            }
-            a[j + 2] = max;
-
-            // Flytt elementer for å sette inn "min"
-            while (j >= 0 && a[j] > min) {
+            // Flytter elementer større enn `temp` ett hakk til høyre
+            while (j >= 0 && a[j] > temp) {
                 a[j + 1] = a[j];
                 j--;
             }
-            a[j + 1] = min;
-        }
-
-        
-        if (n % 2 != 0) {
-            int last = a[n - 1];
-            int j = n - 2;
-            while (j >= 0 && a[j] > last) {
-                a[j + 1] = a[j];
-                j--;
-            }
-            a[j + 1] = last;
+            a[j + 1] = temp;
         }
     }
     
@@ -75,17 +48,23 @@ public class oppgave1 {
         
         System.out.println("Sorteringstid: " + (endTime - startTime) / 1e9 + " sekunder");
         
-        
+        // Verifiser at arrayet er sortert
         boolean sorted = isSorted(arrayCopy);
         System.out.println("Sortert korrekt: " + sorted);
 
-       
+        // Skriv ut de første 20 elementene etter sortering
         System.out.println("Første 20 elementer etter sortering: " + Arrays.toString(Arrays.copyOf(arrayCopy, 20)));
+
+        // Skriv ut de siste 20 elementene for feilsøking
+        System.out.println("Siste 20 elementer etter sortering: " + Arrays.toString(Arrays.copyOfRange(arrayCopy, arrayCopy.length - 20, arrayCopy.length)));
     }
     
     private static boolean isSorted(int[] a) {
         for (int i = 1; i < a.length; i++) {
-            if (a[i - 1] > a[i]) return false;
+            if (a[i - 1] > a[i]) {
+                System.out.println("Feil sortering ved indeks " + i + ": " + a[i - 1] + " > " + a[i]);
+                return false;
+            }
         }
         return true;
     }
