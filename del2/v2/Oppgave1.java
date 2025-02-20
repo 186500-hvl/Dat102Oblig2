@@ -7,7 +7,7 @@ public class Oppgave1 {
     public static void insertionSort(int[] a) {
         int n = a.length;
         
-       
+      
         int minIndex = 0;
         for (int i = 1; i < n; i++) {
             if (a[i] < a[minIndex]) {
@@ -16,7 +16,7 @@ public class Oppgave1 {
         }
         swap(a, 0, minIndex);
 
-   
+       
         for (int i = 1; i < n; i++) {
             int temp = a[i];
             int j = i - 1;
@@ -26,7 +26,7 @@ public class Oppgave1 {
                 a[j + 1] = a[j];
                 j--;
             }
-            a[j + 1] = temp;
+            a[j + 1] = temp; 
         }
     }
     
@@ -48,30 +48,24 @@ public class Oppgave1 {
         
         System.out.println("Sorteringstid: " + (endTime - startTime) / 1e9 + " sekunder");
         
-      
+    
         boolean sorted = isSorted(arrayCopy);
         System.out.println("Sortert korrekt: " + sorted);
 
-      
+    
         System.out.println("Første 20 elementer etter sortering: " + Arrays.toString(Arrays.copyOf(arrayCopy, 20)));
 
-      
+   
         System.out.println("Siste 20 elementer etter sortering: " + Arrays.toString(Arrays.copyOfRange(arrayCopy, arrayCopy.length - 20, arrayCopy.length)));
     }
     
     private static boolean isSorted(int[] a) {
-
         for (int i = 1; i < a.length; i++) {
             if (a[i - 1] > a[i]) {
                 System.out.println("Feil sortering ved indeks " + i + ": " + a[i - 1] + " > " + a[i]);
                 return false;
-
-        for (int i = 1; i < a.length - 1; i++) {
-            if (a[i - 1] > a[i]) {
-            	return false;
-
             }
         }
         return true;
     }
-
+}
