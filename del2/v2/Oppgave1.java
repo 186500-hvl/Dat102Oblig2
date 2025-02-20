@@ -60,10 +60,16 @@ public class Oppgave1 {
     }
     
     private static boolean isSorted(int[] a) {
+<<<<<<< HEAD:del2/v2/Oppgave1.java
         for (int i = 1; i < a.length; i++) {
             if (a[i - 1] > a[i]) {
                 System.out.println("Feil sortering ved indeks " + i + ": " + a[i - 1] + " > " + a[i]);
                 return false;
+=======
+        for (int i = 1; i < a.length - 1; i++) {
+            if (a[i - 1] > a[i]) {
+            	return false;
+>>>>>>> 1ef9fd768fd7f35bf4388516fc1889954d9d3f22:del2/v2/oppgave1.java
             }
         }
         return true;
