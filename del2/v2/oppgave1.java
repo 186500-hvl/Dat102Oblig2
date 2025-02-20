@@ -84,8 +84,10 @@ public class oppgave1 {
     }
     
     private static boolean isSorted(int[] a) {
-        for (int i = 1; i < a.length; i++) {
-            if (a[i - 1] > a[i]) return false;
+        for (int i = 1; i < a.length - 1; i++) {
+            if (a[i - 1] > a[i]) {
+            	return false;
+            }
         }
         return true;
     }
