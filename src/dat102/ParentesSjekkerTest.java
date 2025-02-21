@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class ParentesSjekkerTest {
 
-    // 🔹 Tester ALLE typer balanserte parenteser
+    
     @Test
     public void testKorrektParenteser() {
         assertTrue(ParentesSjekker.sjekkParenteser("{ [ ( ) ] }"));
@@ -43,7 +43,7 @@ public class ParentesSjekkerTest {
         assertTrue(ParentesSjekker.sjekkParenteser(javaprogram));
     }
 
-    // 🔹 Tester feil i ulike parenteser
+  
     @Test
     public void testManglerSluttParentes() {
         assertFalse(ParentesSjekker.sjekkParenteser("{ [ ( ) }"));
@@ -64,7 +64,7 @@ public class ParentesSjekkerTest {
         assertFalse(ParentesSjekker.sjekkParenteser("{ ( ] }"));
     }
 
-    // 🔹 Tester spesifikke scenarier som kan være problematiske
+  
     @Test
     public void testTomStreng() {
         assertTrue(ParentesSjekker.sjekkParenteser(""));
@@ -100,7 +100,7 @@ public class ParentesSjekkerTest {
         assertFalse(ParentesSjekker.sjekkParenteser("{ a + b ( c } ]"));
     }
 
-    // 🔹 Tester for å treffe ALLE branches i koden
+
     @Test
     public void testBareTilfeldigeTegnUtenParenteser() {
         assertTrue(ParentesSjekker.sjekkParenteser("abcdefg12345"));

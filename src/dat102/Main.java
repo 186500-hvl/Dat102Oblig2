@@ -1,10 +1,23 @@
 package dat102;
-public class Main {
-   public static void main(String[] args) {
-       String test1 = "{ [ ( ) ] }"; 
-       String test2 = "{ [ ( ) }";   
-       System.out.println("Test 1: " + ParentesSjekker.sjekkParenteser(test1));
-       System.out.println("Test 2: " + ParentesSjekker.sjekkParenteser(test2));
-   }
-}
 
+public class Main {
+    public static void main(String[] args) {
+        String[] testCases = {
+            "{ [ ( ) ] }",  
+            "{ [ ( ) }",    
+            "[ ( ) ] }",    
+            "{ [ ( ] ) }",  
+            "( [ { } ] )",  
+            "((()))",        
+            "({[)]}",        
+            "{ [ ( a + b ) * c ] }", 
+            "",              
+            "{",             
+            "}"              
+        };
+
+        for (String test : testCases) {
+            System.out.println("Test: " + test + " -> " + ParentesSjekker.sjekkParenteser(test));
+        }
+    }
+}
